@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div class="product">
+    <p>Product Name: Product name</p>
+    <button onclick="deleteProduct(123)">Delete</button>
+</div>
+
+<script>
+    function deleteProduct(productId) {
+        fetch(`/delete/${productId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                // Product deleted successfully, you can update the UI as needed
+                location.reload(); // Reload the product page
+            } else {
+                // Handle errors or show a message to the user
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+
+</body>
+</html>
